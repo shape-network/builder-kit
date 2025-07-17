@@ -1,5 +1,4 @@
 import { Providers } from '@/components/providers';
-import { ServerStatus } from '@/components/server-status';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { WalletConnect } from '@/components/wallet-connect';
 import type { Metadata } from 'next';
@@ -18,7 +17,66 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  // todo
+  title: {
+    default: 'Builder Kit - Shape Network',
+    template: '%s | Builder Kit - Shape Network',
+  },
+  description:
+    'A modern & minimal web3 starter kit for building decentralized applications with Next.js, Wagmi, and Shape Network. Get quickly started onchain with sensible defaults for a great user & developer experience.',
+  keywords: [
+    'web3',
+    'blockchain',
+    'dapp',
+    'decentralized applications',
+    'shape network',
+    'ethereum',
+    'wagmi',
+    'builder',
+    'rainbowkit',
+    'nextjs',
+    'typescript',
+    'tailwind',
+    'starter kit',
+    'template',
+    'smart contracts',
+    'wallet connect',
+  ],
+  metadataBase: new URL('https://builder-kit.vercel.app'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://builder-kit.vercel.app',
+    title: 'Builder Kit - Shape Network',
+    description:
+      'A modern & minimal web3 starter kit for building decentralized applications with Next.js, Wagmi, and Shape Network. Get quickly started onchain with sensible defaults for a great user & developer experience.',
+    siteName: 'Builder Kit',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Builder Kit - Shape Network',
+    description:
+      'A modern & minimal web3 starter kit for building decentralized applications with Next.js, Wagmi, and Shape Network.',
+    site: '@Shape_L2',
+    creator: '@Shape_L2',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  icons: {
+    icon: '/favicon.ico',
+  },
+  manifest: '/site.webmanifest',
 };
 
 export default function RootLayout({
@@ -55,11 +113,6 @@ export default function RootLayout({
                     <path d="M746.568,172.231c-9.431,0-18.024-2.427-25.779-7.277-7.756-4.852-13.939-11.378-18.553-19.578-4.612-8.199-6.918-17.253-6.918-27.162,0-7.448,1.332-14.435,3.997-20.961,2.665-6.525,6.338-12.265,11.019-17.221,4.68-4.953,10.13-8.831,16.349-11.634,6.218-2.801,12.847-4.202,19.886-4.202,7.994,0,15.323,1.691,21.986,5.074,6.662,3.382,12.315,8.013,16.963,13.889,4.646,5.878,8.029,12.573,10.147,20.09,2.118,7.518,2.597,15.375,1.436,23.576h-74.928c.956,3.827,2.527,7.261,4.715,10.301,2.187,3.042,4.954,5.468,8.303,7.277,3.348,1.812,7.14,2.752,11.378,2.819,4.372.068,8.354-.974,11.94-3.127,3.588-2.152,6.576-5.073,8.969-8.764l25.522,5.945c-4.168,9.089-10.388,16.521-18.654,22.294-8.27,5.775-17.527,8.661-27.777,8.661ZM721.352,108.065h50.431c-.753-4.1-2.342-7.806-4.767-11.121-2.426-3.313-5.416-5.961-8.969-7.944-3.554-1.98-7.38-2.972-11.479-2.972s-7.893.974-11.378,2.921-6.441,4.579-8.866,7.893c-2.427,3.315-4.084,7.057-4.972,11.224Z" />
                   </svg>
                 </Link>
-
-                <div className="flex flex-1 justify-center">
-                  <ServerStatus />
-                </div>
-
                 <div className="flex items-center gap-2">
                   <ThemeToggle />
                   <WalletConnect />
