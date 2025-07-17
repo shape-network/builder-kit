@@ -1,13 +1,11 @@
 'use client';
 
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { cn } from '@/lib/utils';
 import { Loader2 } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 type McpResponse = {
   success: boolean;
@@ -20,22 +18,6 @@ type McpResponse = {
   error?: string;
 };
 
-type McpTool = {
-  name: string;
-  description: string;
-  inputSchema: {
-    type: string;
-    properties: Record<string, unknown>;
-    required: string[];
-  };
-  annotations?: {
-    title?: string;
-    readOnlyHint?: boolean;
-    destructiveHint?: boolean;
-    idempotentHint?: boolean;
-  };
-};
-
 export function McpGreetDemo() {
   const [name, setName] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -43,29 +25,16 @@ export function McpGreetDemo() {
   const [serverStatus, setServerStatus] = useState<'unknown' | 'connected' | 'disconnected'>(
     'unknown'
   );
-  const [availableTools, setAvailableTools] = useState<McpTool[]>([]);
 
   const checkServerStatus = async () => {
     try {
       const res = await fetch('/api/call-mcp-tool');
       const data = await res.json();
       setServerStatus(data.success ? 'connected' : 'disconnected');
-      if (data.success && data.availableTools) {
-        setAvailableTools(data.availableTools);
-      }
     } catch {
       setServerStatus('disconnected');
-      setAvailableTools([]);
     }
   };
-
-  useEffect(() => {
-    checkServerStatus();
-
-    const interval = setInterval(checkServerStatus, 120 * 1000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   const handleGreet = async () => {
     if (!name.trim()) return;
@@ -98,27 +67,34 @@ export function McpGreetDemo() {
   };
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="space-y-6">
       <Card>
         <CardHeader>
           <CardTitle>XMCP Greet Tool Demo</CardTitle>
           <CardDescription>Test calling the greet tool from your XMCP server</CardDescription>
         </CardHeader>
-        <CardContent className="flex flex-col gap-4">
-          <div className="flex items-center text-sm">
-            <div
-              className={cn('mr-2 h-2 w-2 animate-pulse rounded-full', {
-                'bg-green-500': serverStatus === 'connected',
-                'bg-red-500': serverStatus === 'disconnected',
-                'bg-gray-400': serverStatus === 'unknown',
-              })}
-            />
-            {serverStatus === 'unknown' && 'Checking server status...'}
-            {serverStatus === 'connected' && 'Server Connected'}
-            {serverStatus === 'disconnected' && 'Server Disconnected'}
+        <CardContent className="space-y-4">
+          <div className="flex gap-2">
+            <Button onClick={checkServerStatus} variant="outline" size="sm" disabled={isLoading}>
+              Check Server Status
+            </Button>
+            <div className="flex items-center text-sm">
+              <div
+                className={`mr-2 h-2 w-2 rounded-full ${
+                  serverStatus === 'connected'
+                    ? 'bg-green-500'
+                    : serverStatus === 'disconnected'
+                      ? 'bg-red-500'
+                      : 'bg-gray-400'
+                }`}
+              />
+              {serverStatus === 'unknown' && 'Unknown'}
+              {serverStatus === 'connected' && 'Connected'}
+              {serverStatus === 'disconnected' && 'Disconnected'}
+            </div>
           </div>
 
-          <div className="flex flex-col gap-2">
+          <div className="space-y-2">
             <label htmlFor="name" className="text-sm font-medium">
               Enter your name:
             </label>
@@ -141,10 +117,9 @@ export function McpGreetDemo() {
 
           {response && (
             <Alert
-              className={cn({
-                'border-green-200 bg-green-50': response.success,
-                'border-red-200 bg-red-50': !response.success,
-              })}
+              className={
+                response.success ? 'border-green-200 bg-green-50' : 'border-red-200 bg-red-50'
+              }
             >
               <AlertDescription>
                 {response.success ? (
@@ -167,40 +142,9 @@ export function McpGreetDemo() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Available Tools ({availableTools.length})</CardTitle>
-          <CardDescription>Tools discovered from your XMCP server</CardDescription>
-        </CardHeader>
-        <CardContent>
-          {availableTools.length > 0 ? (
-            <div className="flex flex-col gap-3">
-              {availableTools.map((tool) => (
-                <div key={tool.name} className="rounded-lg border p-3">
-                  <div className="mb-2 flex items-center gap-2">
-                    <code className="rounded bg-gray-100 px-2 py-1 font-mono">{tool.name}</code>
-                    {tool.annotations?.readOnlyHint && <Badge variant="outline">Read-only</Badge>}
-                  </div>
-                  <p className="mb-2 text-sm text-gray-600">{tool.description}</p>
-                  {tool.inputSchema.required.length > 0 && (
-                    <div className="text-xs text-gray-500">
-                      Required: {tool.inputSchema.required.join(', ')}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="text-sm text-gray-500">
-              {serverStatus === 'connected' ? 'No tools found' : 'Connect to server to see tools'}
-            </div>
-          )}
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
           <CardTitle>How it works</CardTitle>
         </CardHeader>
-        <CardContent className="flex flex-col gap-2 text-sm">
+        <CardContent className="space-y-2 text-sm">
           <div>
             1. <strong>XMCP Server:</strong> Running on port 3002 with your greet tool
           </div>
