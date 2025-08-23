@@ -3,6 +3,8 @@ import { ThemeToggle } from '@/components/theme-toggle';
 import { WalletConnect } from '@/components/wallet-connect';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/next"
 import Link from 'next/link';
 import './globals.css';
 
@@ -172,6 +174,8 @@ export default function RootLayout({
             </footer>
           </div>
         </Providers>
+        <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
