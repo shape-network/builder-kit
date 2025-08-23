@@ -12,7 +12,7 @@ interface ChatInterfaceProps {
 
 export default function ChatInterface({ onBack }: ChatInterfaceProps) {
   const [input, setInput] = useState('');
-  const { messages, sendMessage } = useChat();
+  const { messages, sendMessage } = useChat({id: 'shape-quiz'});
 
   return (
     <div className="flex min-h-[calc(100vh-200px)] flex-col max-w-4xl mx-auto w-full">
@@ -52,11 +52,25 @@ export default function ChatInterface({ onBack }: ChatInterfaceProps) {
                   : 'bg-muted'
               }`}
             >
-              {message.role === 'user' ? 'You: ' : 'AI: '}
+              {/* {message.role === 'user' ? 'You: ' : 'AI: '} */}
               {message.parts.map((part, i) => {
                 switch (part.type) {
                   case 'text':
                     return <div key={`${message.id}-${i}`}>{part.text}</div>;
+                  case 'tool-call':
+                    return (
+                      <div key={`${message.id}-${i}`} className="text-xs opacity-80 whitespace-pre-wrap">
+                        Tool call: {part.type} {JSON.stringify(part.input)}
+                      </div>
+                    );
+                  case 'tool-result':
+                    return (
+                      <pre key={`${message.id}-${i}`} className="text-xs opacity-70">
+                        {typeof part.output === 'string'
+                        ? part.output
+                        : JSON.stringify(part.output, null, 2)}
+                      </pre>
+                    );
                   default:
                     return null;
                 }
