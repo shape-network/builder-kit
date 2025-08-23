@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ArrowLeftIcon } from '@radix-ui/react-icons';
 import { useChat, UIMessage } from '@ai-sdk/react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 interface ChatInterfaceProps {
   onBack: () => void;
