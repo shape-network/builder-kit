@@ -39,8 +39,8 @@ export async function POST(request: NextRequest) {
             success: true,
             message: 'NFT minted successfully!',
             tokenId: '1',
-            tokenAddress: '0x...', // Replace with actual contract address
-            imageUrl: '/shape wiz.png',
+            contractAddress: '0x...', // Replace with actual contract address
+            imageUrl: '/shape-wiz.png',
             recipient: address,
         });
 
