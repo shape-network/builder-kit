@@ -12,6 +12,8 @@
 
 # testing
 /coverage
+/scripts
+/prompts
 
 # next.js
 /.next/

@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { UIMessage, useChat } from '@ai-sdk/react';
 import { ArrowLeftIcon } from '@radix-ui/react-icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface ChatInterfaceProps {
   onBack: () => void;
@@ -13,6 +13,10 @@ interface ChatInterfaceProps {
 export default function ChatInterface({ onBack }: ChatInterfaceProps) {
   const [input, setInput] = useState('');
   const { messages, sendMessage } = useChat({ id: 'shape-quiz' });
+
+  useEffect(() => {
+    console.log(messages);
+  }, [messages]);
 
   return (
     <div className="mx-auto flex min-h-[calc(100vh-200px)] w-full max-w-4xl flex-col">
@@ -50,7 +54,7 @@ export default function ChatInterface({ onBack }: ChatInterfaceProps) {
                   case 'text':
                     return <div key={`${message.id}-${i}`}>{part.text}</div>;
                   case 'tool-call':
-                    console.log(part);
+                    console.log('tool-call', part.input);
                     return (
                       <div
                         key={`${message.id}-${i}`}
@@ -60,7 +64,7 @@ export default function ChatInterface({ onBack }: ChatInterfaceProps) {
                       </div>
                     );
                   case 'tool-result':
-                    console.log(part);
+                    console.log('tool-result', part.output);
                     return (
                       <pre key={`${message.id}-${i}`} className="text-xs opacity-70">
                         {typeof part.output === 'string'

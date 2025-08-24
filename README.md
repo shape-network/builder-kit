@@ -1,161 +1,77 @@
-# Builder Kit: Onchain Starter Template
+Shape Wiz Project: AI Chat → MCP Tools Flow Analysis
+Based on my review of the codebase, here's the complete flow of how the AI chat calls and uses MCP tools:
+🏗️ Architecture Overview
+This is a Next.js quiz application about Shape Network that uses:
+Frontend: React chat interface
+Backend: AI SDK with OpenAI GPT-4
+MCP Integration: External MCP server for Shape Network data
+Web3: Wallet connection for NFT rewards
+🔄 Complete Flow Breakdown
 
-A modern, production-ready starter template for building decentralized applications with sensible defaults.
+1. User Interaction Flow
+   User → Home Page → Connect Wallet → Start Quiz → Chat Interface
+   Key Files:
+   app/page.tsx - Main page with home/chat toggle
+   components/chat-interface.tsx - React chat UI
+2. Chat Message Processing
+   Frontend Chat → API Route → AI SDK → Tool Selection → MCP Call
+   low Details:
+   User sends message via chat-interface.tsx
+   Uses useChat hook from AI SDK (@ai-sdk/react)
+   Sends to /api/chat endpoint
+3. AI Chat API Processing (app/api/chat/route.ts)
+   The core AI processing happens here:
+   // Two main tools are available:
+4. "list-tools" - Lists available MCP tools
+5. "shape-mcp" - Calls specific MCP tools
+   System Prompt:
+   > "You are a quiz and trivia game host. You will use the 'shape-mcp' tool to get information about Shape to make your questions."
+6. MCP Tool Integration (lib/mcp.ts)
+   MCP Client Functions:
+   // Lists available tools from MCP server
+   listMcpTools() → calls 'tools/list'
 
-<table width="100%">
-  <tr>
-    <td width="50%"><img src="./public/lp-1.png" alt="Builder Kit Screenshot 1" width="100%"/></td>
-    <td width="50%"><img src="./public/lp-2.png" alt="Builder Kit Screenshot 2" width="100%"/></td>
-  </tr>
-</table>
+// Executes specific MCP tool with arguments  
+callMcpTool(name, args) → calls 'tools/call'
+MCP Server:
+URL: https://shape-mcp-server-eta.vercel.app/mcp (default)
+Uses JSON-RPC 2.0 protocol
+Communicates via HTTP POST requests 5. Tool Execution Flow
+<see diagram> 6. Error Handling & Tool Discovery
+The system has robust error handling:
+sequenceDiagram
+participant User
+participant Chat
+participant API
+participant AI
+participant MCP
 
-See deployed website: [builder-kit.vercel.app](https://builder-kit.vercel.app/)
+    User->>Chat: "What's the latest block?"
+    Chat->>API: POST /api/chat
+    API->>AI: GPT-4 processes message
+    AI->>API: Decides to use "shape-mcp" tool
+    API->>MCP: callMcpTool("get-latest-block")
+    MCP-->>API: Returns block data
+    API->>AI: Tool result processed
+    AI-->>Chat: Formatted response
+    Chat-->>User: Display answer
 
-## ✨ Features
-
-- **Next.js 15** with App Router and React 19
-- **Web3 Integration** with Wagmi v2 and RainbowKit
-- **React Query** for data fetching
-- **Shape Network** support (Mainnet & Sepolia)
-- **Alchemy SDK** for performant blockchain interactions
-- **TypeScript** for type safety
-- **Tailwind CSS** with theming and dark mode support
-- **Shadcn/ui** for a large range of fully customizable and themable components
-- **Error Boundaries** for graceful error handling
-
-## 🚀 Quick Start
-
-1. **Clone or use as template**
-
-   ```bash
-   git clone https://github.com/shape-network/builder-kit.git
-   cd builder-kit
-   ```
-
-2. **Install dependencies**
-
-   ```bash
-   yarn install
-   ```
-
-3. **Set up environment variables**
-
-   ```bash
-   cp .env-example .env
-   ```
-
-   Fill in your environment variables:
-
-   - `NEXT_PUBLIC_ALCHEMY_KEY`: Get from [Alchemy](https://alchemy.com)
-   - `NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID`: Get from [WalletConnect](https://cloud.walletconnect.com)
-   - `NEXT_PUBLIC_CHAIN_ID`: Use `11011` for Shape Sepolia or `360` for Shape Mainnet
-
-4. **Start development server**
-
-   ```bash
-   yarn dev
-   ```
-
-5. **Open your browser**
-   Navigate to [http://localhost:3000](http://localhost:3000)
-
-## 🛠️ Development
-
-### Available Scripts
-
-- `yarn dev` - Start development server with Turbopack
-- `yarn build` - Build for production
-- `yarn start` - Start production server
-- `yarn lint` - Run ESLint
-- `yarn lint:fix` - Fix ESLint issues
-- `yarn type-check` - Run TypeScript type checking
-- `yarn format` - Format code with Prettier
-- `yarn format:check` - Check code formatting
-
-### Project Structure
-
-```
-├── app/                    # Next.js App Router
-│   ├── api/               # API routes
-│   │   ├── get-nfts/     # Fetch NFTs for address
-├── components/            # React components
-│   ├── ui/               # Shadcn/ui components
-│   ├── error-boundary.tsx
-│   ├── loading.tsx
-│   ├── providers.tsx
-│   ├── theme-toggle.tsx
-│   └── wallet-connect.tsx
-├── hooks/                 # Custom React hooks
-│   ├── web3.ts           # Web3 data fetching hooks
-│   ├── use-balance.ts    # Wallet balance hook
-│   ├── use-mobile.ts     # Mobile detection hook
-├── lib/                   # Utility functions and configurations
-│   ├── clients.ts        # Alchemy and RPC clients
-│   ├── config.ts         # Environment configuration
-│   ├── utils.ts          # Helper functions
-│   └── web3.ts           # Wagmi configuration
-└── public/               # Static assets
-```
-
-## 🎨 Customization
-
-### Theme Customization
-
-Edit `app/globals.css` to customize the color scheme:
-
-```css
-:root {
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
-  /* ... other CSS variables */
-}
-```
-
-### Adding Components
-
-Use Shadcn/ui CLI to add new components:
-
-```bash
-npx shadcn@latest add button
-```
-
-### Web3 Integration
-
-The template includes examples of Web3 integration:
-
-- Wallet connection with RainbowKit
-- Balance fetching with custom hooks
-- Chain switching and network detection
-- Error handling for Web3 operations
-
-## 🌐 Deployment
-
-### Vercel (Recommended)
-
-1. Push your code to GitHub
-2. Connect your repository to [Vercel](https://vercel.com)
-3. Add your environment variables in Vercel dashboard
-4. Deploy!
-
-## 📚 Documentation
-
-- [Next.js Documentation](https://nextjs.org/docs)
-- [Wagmi Documentation](https://wagmi.sh)
-- [RainbowKit Documentation](https://www.rainbowkit.com)
-- [Shadcn/ui Documentation](https://ui.shadcn.com)
-- [Shape Network Documentation](https://docs.shape.network)
-- [Alchemy SDK Documentation](https://docs.alchemy.com/reference/alchemy-sdk-quickstart)
-
-## 🤝 Contributing
-
-Contributions are welcome! Feel free to submit a Pull Request.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 💬 Support
-
-- [Shape Discord](http://discord.com/invite/shape-l2)
-- [Twitter/X @Shape_L2](https://x.com/Shape_L2)
-- [Twitter/X @williamhzo](https://x.com/williamhzo)
+7. Frontend Tool Visualization
+   The chat interface shows tool calls in real-time:
+   // If tool not found, automatically lists available tools
+   if (error.message.includes('Tool') && error.message.includes('not found')) {
+   const list = await listMcpTools();
+   return `Unknown tool "${name}". Available tools: ${JSON.stringify(list.tools)}`;
+   }
+   🛠️ Available MCP Tools
+   Based on the code, the MCP server likely provides Shape Network-specific tools like:
+   Block information queries
+   Transaction data
+   Network statistics
+   User NFT data (as seen in get-nft-for-user reference)
+   🎯 Key Features
+   Smart Tool Selection: AI automatically chooses appropriate MCP tools
+   Real-time Feedback: Users see tool calls and results
+   Error Recovery: Graceful handling of missing tools
+   Quiz Context: AI uses Shape data to generate quiz questions
+   Web3 Integration: Wallet connection for NFT rewards
