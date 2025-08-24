@@ -5,7 +5,7 @@ import { createPublicClient, http } from 'viem';
 import { shape, shapeSepolia } from 'viem/chains';
 
 export const alchemy = new Alchemy({
-  apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY,
+  apiKey: config.alchemyKey,
   network: config.chainId === shape.id ? Network.SHAPE_MAINNET : Network.SHAPE_SEPOLIA,
 });
 
@@ -16,7 +16,7 @@ export function rpcClient() {
 
   return createPublicClient({
     chain,
-    transport: http(`https://${rootUrl}.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`),
+    transport: http(`https://${rootUrl}.g.alchemy.com/v2/${config.alchemyKey}`),
     batch: {
       multicall: true,
     },
