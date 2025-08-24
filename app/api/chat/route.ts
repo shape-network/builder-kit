@@ -60,6 +60,9 @@ export async function POST(req: Request) {
     2. If the MCP tool is unavailable, use the Alchemy API as a fallback for on-chain data.  
     3. For off-chain data, scrape or reference https://www.shape.network and related sources.  
     4. Summarize any gathered information in a clear and easy-to-understand format before turning it into quiz questions.  
+    5. If the user asks for information that is not available, inform them that the information is not available. Do not make up information or leave a message blank.
+    6. If there is an error, advise what the error is and tell them to contact support.
+    7. Support is available at https://github.com/TalonDragon000/shape-builder-kit/issues
 
     ### Game Rules
     1. All quiz questions must be related to Shape.Network.  
