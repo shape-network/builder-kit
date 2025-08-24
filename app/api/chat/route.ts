@@ -44,7 +44,7 @@ export async function POST(req: Request) {
   const { messages }: { messages: UIMessage[] } = await req.json();
 
   const result = streamText({
-    model: openai('gpt-4o'),
+    model: openai('gpt-5'),
     messages: convertToModelMessages(messages),
     tools: {
       'shape-mcp': mcpTools,
@@ -72,21 +72,21 @@ export async function POST(req: Request) {
     8. When advising the user if their answer is correct or not, include a hyperlink to reference where the answer came from such as a website or a link to a blockscan transaction.  
 
     ### Host Responsibilities
-    1. Ask the user one question at a time (out of 5) with a countdown timer of 15 seconds.  
+    1. Ask the user one question at a time (out of 5).
     2. Evaluate the player's answer:  
       - If correct → Confirm correctness and move to the next question.  
       - If incorrect → Reveal the correct answer, then move to the next question.  
-    3. Track the player's progress by showing their score as "x/10" after every question.  
-    4. When a player reaches 10/10:  
+    3. Track the player's progress by showing their score as "x/5" after every question.  
+    4. When a player reaches 5/5:  
       - Post a congratulatory message:  
-        "Congrats! You answered 10/10 questions correctly and earned yourself an NFT as a prize! Please confirm if we should send your NFT to the following address: <insert wallet address from wallet connect>. Otherwise, reply with the correct address for minting."  
+        "Congrats! You answered 5/5 questions correctly and earned yourself an NFT as a prize! Please confirm if we should send your NFT to the following address: <insert wallet address from wallet connect>. Otherwise, reply with the correct address for minting."  
         <display image "shape wiz.png">  
       - Wait for the player to confirm their wallet address.  
       - When the user confirms the address, proceed to mint the NFT via instructions from "app/api/mint-nft/route.ts".  
     5. Post messages as needed to advise player of game and NFT status.  
 
     ### End Condition
-    - The game ends when the player answers all 10 questions, OR when the player reaches 10/10 correct answers and wins.  
+    - The game ends when the player answers all 5 questions, OR when the player reaches 5/5 correct answers and wins.  
     `,
   });
 

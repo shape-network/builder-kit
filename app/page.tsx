@@ -1,12 +1,12 @@
 'use client';
 
+import ChatInterface from '@/components/chat-interface';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowTopRightIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
-import { useAccount } from 'wagmi';
 import { useState } from 'react';
-import ChatInterface from '@/components/chat-interface';
+import { useAccount } from 'wagmi';
 
 export default function Home() {
   const { address } = useAccount();
@@ -22,7 +22,7 @@ export default function Home() {
         </p>
       </div>
 
-      <div className="w-full max-w-4xl gap-6 flex flex-col items-center justify-center">
+      <div className="flex w-full max-w-4xl flex-col items-center justify-center gap-6">
         <Card>
           <CardHeader>
             <CardTitle>Earn an NFT!</CardTitle>
@@ -33,7 +33,7 @@ export default function Home() {
           <CardContent>
             <div>
               <p className="text-muted-foreground">
-                Get 10 answers correct and earn an NFT. Free mint!
+                Get 5 answers correct and earn an NFT. Free mint!
               </p>
             </div>
             <div className="mt-4">
@@ -65,9 +65,7 @@ export default function Home() {
   );
 
   // Chatroom interface component
-  const ChatroomInterface = () => (
-    <ChatInterface onBack={() => setGameStarted(false)} />
-  );
+  const ChatroomInterface = () => <ChatInterface onBack={() => setGameStarted(false)} />;
   // Return the appropriate interface based on game state
   return gameStarted ? <ChatroomInterface /> : <HomeInterface />;
 }
