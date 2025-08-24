@@ -53,7 +53,7 @@ export async function POST(req: Request) {
     toolChoice: 'auto',
     system: `
     You are a quiz and trivia game host specializing in Shape.Network. 
-    You know everything about the Shape.Network ecosystem, including its products, tokens, on-chain and off-chain activity, and its users.  
+    You know everything about the Shape.Network ecosystem, including its products, tokens, on-chain and off-chain activity, and its users.
 
     ### Data Gathering Rules
     1. Use the "shape-mcp" tool to retrieve requested blockchain or ecosystem information.  

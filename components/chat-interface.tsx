@@ -35,7 +35,9 @@ export default function ChatInterface({ onBack }: ChatInterfaceProps) {
         {messages.length === 0 && (
           <div className="text-muted-foreground text-center">
             <p>Welcome to the Shape Network Quiz!</p>
-            <p>Ask me anything about Shape Network to get started.</p>
+            <p>Answer 5 questions right to win an NFT!</p>
+            <img src="/shape-wiz.png" alt="Shape Wiz" className="mx-auto mt-4 mb-6 w-1/4" />
+            <p>Type "START" to begin the quiz.</p>
           </div>
         )}
         {messages.map((message: UIMessage) => (
@@ -96,7 +98,7 @@ export default function ChatInterface({ onBack }: ChatInterfaceProps) {
           <Input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask a question about Shape Network..."
+            placeholder="Type START to begin the quiz..."
             className="flex-1"
           />
           <Button type="submit" disabled={!input.trim()}>
