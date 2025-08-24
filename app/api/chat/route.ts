@@ -44,7 +44,7 @@ export async function POST(req: Request) {
   const { messages }: { messages: UIMessage[] } = await req.json();
 
   const result = streamText({
-    model: openai('gpt-5'),
+    model: openai('gpt-4o'),
     messages: convertToModelMessages(messages),
     tools: {
       'shape-mcp': mcpTools,
