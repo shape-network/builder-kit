@@ -36,7 +36,7 @@ export default function ChatInterface({ onBack }: ChatInterfaceProps) {
           <div className="text-muted-foreground text-center">
             <p>Welcome to the Shape Network Quiz!</p>
             <p>Answer 5 questions right to win an NFT!</p>
-            <img src="/shape-wiz.png" alt="Shape-Wiz" className="mx-auto mt-4 mb-6 w-1/4" />
+            <img src="/shape-wiz.png" alt="Shape Wiz" className="mx-auto mt-4 mb-6 w-1/4" />
             <p>Type &quot;START&quot; to begin the quiz.</p>
           </div>
         )}
