@@ -35,7 +35,7 @@ See deployed website: [builder-kit.vercel.app](https://builder-kit.vercel.app/)
 2. **Install dependencies**
 
    ```bash
-   yarn install
+   bun install
    ```
 
 3. **Set up environment variables**
@@ -45,7 +45,6 @@ See deployed website: [builder-kit.vercel.app](https://builder-kit.vercel.app/)
    ```
 
    Fill in your environment variables:
-
    - `NEXT_PUBLIC_ALCHEMY_KEY`: Get from [Alchemy](https://alchemy.com)
    - `NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID`: Get from [WalletConnect](https://cloud.walletconnect.com)
    - `NEXT_PUBLIC_CHAIN_ID`: Use `11011` for Shape Sepolia or `360` for Shape Mainnet
@@ -53,7 +52,7 @@ See deployed website: [builder-kit.vercel.app](https://builder-kit.vercel.app/)
 4. **Start development server**
 
    ```bash
-   yarn dev
+   bun dev
    ```
 
 5. **Open your browser**
@@ -63,14 +62,14 @@ See deployed website: [builder-kit.vercel.app](https://builder-kit.vercel.app/)
 
 ### Available Scripts
 
-- `yarn dev` - Start development server with Turbopack
-- `yarn build` - Build for production
-- `yarn start` - Start production server
-- `yarn lint` - Run ESLint
-- `yarn lint:fix` - Fix ESLint issues
-- `yarn type-check` - Run TypeScript type checking
-- `yarn format` - Format code with Prettier
-- `yarn format:check` - Check code formatting
+- `bun dev` - Start development server with Turbopack
+- `bun build` - Build for production
+- `bun start` - Start production server
+- `bun lint` - Run ESLint
+- `bun lint:fix` - Fix ESLint issues
+- `bun type-check` - Run TypeScript type checking
+- `bun format` - Format code with Prettier
+- `bun format:check` - Check code formatting
 
 ### Project Structure
 
