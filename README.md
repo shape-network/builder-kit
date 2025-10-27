@@ -13,7 +13,7 @@ See deployed website: [builder-kit.vercel.app](https://builder-kit.vercel.app/)
 
 ## ✨ Features
 
-- **Next.js 15** with App Router and React 19
+- **Next.js 16** with App Router and React 19
 - **Web3 Integration** with Wagmi v2 and RainbowKit
 - **React Query** for data fetching
 - **Shape Network** support (Mainnet & Sepolia)
