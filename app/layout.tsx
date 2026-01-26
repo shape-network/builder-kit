@@ -59,8 +59,8 @@ export const metadata: Metadata = {
     title: 'Builder Kit - Shape Network',
     description:
       'A modern & minimal web3 starter kit for building decentralized applications with Next.js, Wagmi, and Shape Network.',
-    site: '@Shape_L2',
-    creator: '@Shape_L2',
+    site: '@shape',
+    creator: '@shape',
   },
   robots: {
     index: true,
@@ -134,7 +134,7 @@ export default function RootLayout({
                 </Link>
                 <div className="flex items-center gap-8">
                   <Link
-                    href="https://x.com/Shape_L2"
+                    href="https://x.com/shape"
                     target="_blank"
                     rel="noreferrer"
                     className="text-muted-foreground hover:text-foreground transition-colors"

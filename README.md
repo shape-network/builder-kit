@@ -156,5 +156,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 💬 Support
 
 - [Shape Discord](http://discord.com/invite/shape-l2)
-- [Twitter/X @Shape_L2](https://x.com/Shape_L2)
+- [Twitter/X @shape](https://x.com/shape)
 - [Twitter/X @williamhzo](https://x.com/williamhzo)
