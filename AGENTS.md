@@ -25,6 +25,7 @@ Use Bun (see `package.json`):
 - `bun run contracts:compile`: compile contracts in `packages/contract`.
 - `bun run contracts:test`: run contract tests.
 - `bun run contracts:deploy:shape-sepolia`: deploy contracts to Shape Sepolia.
+- `bun run contracts:artifact`: regenerate deployment artifacts consumed by `apps/web`.
 
 ## Coding Style & Naming Conventions
 

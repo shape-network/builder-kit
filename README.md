@@ -86,6 +86,8 @@ bun contracts:compile
 bun contracts:test
 ```
 
+`bun contracts:compile` also regenerates deployment artifacts for the web app.
+
 Deploy locally (Hardhat network):
 
 ```bash
@@ -100,10 +102,20 @@ Deploy to Shape Sepolia:
 bun contracts:deploy:shape-sepolia
 ```
 
+Sepolia deploy also regenerates deployment artifacts.
+
 Deploy to Shape Mainnet:
 
 ```bash
 bun --filter=@builder-kit/contract run deploy:shape-mainnet
+```
+
+Mainnet deploy also regenerates deployment artifacts.
+
+Manual artifact generation:
+
+```bash
+bun contracts:artifact
 ```
 
 Verify on Shape explorer:
@@ -125,6 +137,15 @@ For mainnet verify, switch network flag to `shapeMainnet`.
 - `bun contracts:compile`: compile Solidity contracts
 - `bun contracts:test`: run Hardhat tests
 - `bun contracts:deploy:shape-sepolia`: deploy sample contract to Shape Sepolia
+- `bun contracts:artifact`: regenerate deployment artifacts consumed by the web app
+
+## Contract Debug Page
+
+`/debug/contracts` reads deployment artifacts and interacts with `HelloShape`.
+
+- shows explicit deployment mismatch errors when chain/artifacts are out of sync
+- reads current message/owner
+- writes `setMessage` from connected wallet
 
 ## Vercel Deploy (Monorepo)
 
@@ -160,6 +181,7 @@ vercel --prod --cwd apps/web
 ├── packages/
 │   └── contract/
 │       ├── contracts/
+│       ├── deployments/
 │       ├── ignition/
 │       ├── scripts/
 │       └── test/

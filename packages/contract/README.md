@@ -23,7 +23,8 @@ bun run test
 bun run deploy
 bun run deploy:shape-sepolia
 bun run deploy:shape-mainnet
+bun run generate:artifact
 CONTRACT_ADDRESS=0x... bun run verify --network shapeSepolia
 ```
 
-To override constructor params at deploy time, set `INITIAL_MESSAGE` in `.env`.
+`compile` and remote deploy scripts regenerate deployment artifacts used by `apps/web`.
