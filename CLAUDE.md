@@ -20,7 +20,7 @@ bun run format:check # Prettier check
 
 ## Environment Variables
 
-Copy `.env-example` to `.env` and configure:
+Copy `apps/web/.env-example` to `apps/web/.env` and configure:
 
 - `NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID` - WalletConnect project ID
 - `NEXT_PUBLIC_ALCHEMY_KEY` - Alchemy API key
@@ -30,14 +30,14 @@ Copy `.env-example` to `.env` and configure:
 
 ### Web3 Stack
 
-- **wagmi + RainbowKit**: Wallet connection and transaction management (`lib/web3.ts`)
+- **wagmi + RainbowKit**: Wallet connection and transaction management (`apps/web/lib/web3.ts`)
 - **viem**: Low-level blockchain interactions
-- **Alchemy SDK**: NFT queries and enhanced RPC (`lib/clients.ts`)
+- **Alchemy SDK**: NFT queries and enhanced RPC (`apps/web/lib/clients.ts`)
 - Chain config determined by `NEXT_PUBLIC_CHAIN_ID` at build time
 
 ### Provider Hierarchy
 
-`components/providers.tsx` wraps the app:
+`apps/web/components/providers.tsx` wraps the app:
 
 ```
 ThemeProvider (next-themes)
@@ -48,12 +48,12 @@ ThemeProvider (next-themes)
 
 ### UI Components
 
-- Shadcn/ui (new-york style) in `components/ui/`
-- `cn()` utility in `lib/utils.ts` for class merging
+- Shadcn/ui (new-york style) in `apps/web/components/ui/`
+- `cn()` utility in `apps/web/lib/utils.ts` for class merging
 
 ### Path Aliases
 
-`@/*` maps to project root (configured in tsconfig.json)
+`@/*` maps to `apps/web` project root (configured in `apps/web/tsconfig.json`)
 
 ### Supported Chains
 

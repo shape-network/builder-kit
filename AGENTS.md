@@ -2,23 +2,26 @@
 
 ## Project Structure & Module Organization
 
-- `app/` contains Next.js App Router routes/layouts; `app/api/` houses API routes.
-- `components/` stores shared UI and providers; `components/ui/` is the shadcn/ui set.
-- `hooks/` holds custom React hooks (example: `use-balance.ts`).
-- `lib/` is for configs, clients, and utilities.
-- `public/` contains static assets.
-- Root configs include `next.config.ts`, `tsconfig.json`, `eslint.config.mjs`, `postcss.config.mjs`, and `components.json`.
+- `apps/web/` contains the Next.js app.
+- `apps/web/app/` contains App Router routes/layouts; `apps/web/app/api/` houses API routes.
+- `apps/web/components/` stores shared UI and providers; `apps/web/components/ui/` is the shadcn/ui set.
+- `apps/web/hooks/` holds custom React hooks (example: `use-balance.ts`).
+- `apps/web/lib/` is for configs, clients, and utilities.
+- `apps/web/public/` contains static assets.
+- `packages/contract/` is the contract workspace scaffold.
+- Web app configs live in `apps/web/` (`next.config.ts`, `tsconfig.json`, `eslint.config.mjs`, `postcss.config.mjs`, `components.json`).
+- Monorepo orchestration is in root `package.json` and `turbo.json`.
 
 ## Build, Test, and Development Commands
 
 Use Bun (see `package.json`):
 
-- `bun run dev`: start the Next.js dev server with Turbopack.
-- `bun run build`: create a production build.
-- `bun run start`: run the production server after a build.
-- `bun run lint` / `bun run lint:fix`: lint and auto-fix.
-- `bun run type-check`: TypeScript type checking.
-- `bun run format` / `bun run format:check`: Prettier formatting and validation.
+- `bun run dev`: start the web app dev server (`apps/web`) with Turbopack.
+- `bun run build`: create a production build for the web app.
+- `bun run start`: run the web app production server after build.
+- `bun run lint` / `bun run lint:fix`: lint and auto-fix the web app.
+- `bun run type-check`: TypeScript type checking for the web app.
+- `bun run format` / `bun run format:check`: Prettier formatting and validation for the web app.
 
 ## Coding Style & Naming Conventions
 
@@ -40,5 +43,5 @@ Use Bun (see `package.json`):
 
 ## Configuration & Secrets
 
-- Copy `.env-example` to `.env` and set `NEXT_PUBLIC_ALCHEMY_KEY`, `NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID`, and `NEXT_PUBLIC_CHAIN_ID` (11011 for Shape Sepolia, 360 for mainnet).
+- Copy `apps/web/.env-example` to `apps/web/.env` and set `NEXT_PUBLIC_ALCHEMY_KEY`, `NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID`, and `NEXT_PUBLIC_CHAIN_ID` (11011 for Shape Sepolia, 360 for mainnet).
 - Never commit real keys or secrets.
