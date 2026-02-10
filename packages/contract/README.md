@@ -28,4 +28,4 @@ bun run generate:artifact
 CONTRACT_ADDRESS=0x... bun run verify --network shapeSepolia
 ```
 
-`compile` and remote deploy scripts regenerate deployment artifacts used by `apps/web`.
+`compile` and remote deploy scripts regenerate deployment artifacts and run Wagmi CLI codegen for `apps/web`.

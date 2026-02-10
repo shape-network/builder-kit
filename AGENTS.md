@@ -26,6 +26,7 @@ Use Bun (see `package.json`):
 - `bun run contracts:test`: run contract tests.
 - `bun run contracts:deploy:shape-sepolia`: deploy contracts to Shape Sepolia.
 - `bun run contracts:artifact`: regenerate deployment artifacts consumed by `apps/web`.
+- `bun run wagmi:generate`: regenerate Wagmi typed ABI/hooks for `apps/web`.
 
 ## Coding Style & Naming Conventions
 

@@ -86,7 +86,7 @@ bun contracts:compile
 bun contracts:test
 ```
 
-`bun contracts:compile` also regenerates deployment artifacts for the web app.
+`bun contracts:compile` also regenerates deployment artifacts for the web app and runs Wagmi CLI codegen.
 
 Deploy locally (Hardhat network):
 
@@ -118,6 +118,12 @@ Manual artifact generation:
 bun contracts:artifact
 ```
 
+Manual Wagmi generation:
+
+```bash
+bun wagmi:generate
+```
+
 Verify on Shape explorer:
 
 ```bash
@@ -138,6 +144,7 @@ For mainnet verify, switch network flag to `shapeMainnet`.
 - `bun contracts:test`: run Hardhat tests
 - `bun contracts:deploy:shape-sepolia`: deploy sample contract to Shape Sepolia
 - `bun contracts:artifact`: regenerate deployment artifacts consumed by the web app
+- `bun wagmi:generate`: regenerate Wagmi typed ABI/hooks from Hardhat artifacts
 
 ## Contract Debug Page
 
@@ -146,6 +153,11 @@ For mainnet verify, switch network flag to `shapeMainnet`.
 - shows explicit deployment mismatch errors when chain/artifacts are out of sync
 - reads current message/owner
 - writes `setMessage` from connected wallet
+
+Generated outputs:
+- `packages/contract/deployments/deployed-contracts.json` (addresses)
+- `apps/web/lib/contracts/generated/deployed-contracts.ts` (typed addresses)
+- `apps/web/lib/contracts/generated/wagmi.ts` (Wagmi CLI ABI/hooks)
 
 ## Vercel Deploy (Monorepo)
 
@@ -203,4 +215,6 @@ vercel --prod --cwd apps/web
 - [Shape docs](https://docs.shape.network)
 - [Shape Discord](http://discord.com/invite/shape-l2)
 - [wagmi docs](https://wagmi.sh)
+- [wagmi core getting started](https://wagmi.sh/core/getting-started)
+- [wagmi cli docs](https://wagmi.sh/cli)
 - [Hardhat docs](https://hardhat.org/docs)
