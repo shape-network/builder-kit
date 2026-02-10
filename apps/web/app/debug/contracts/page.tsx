@@ -6,14 +6,11 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { useHelloShapeContract } from '@/hooks/use-hello-shape';
+import { helloShapeAbi } from '@/lib/contracts/generated/wagmi';
 import { AlertTriangleIcon, CheckCircle2Icon, Loader2Icon } from 'lucide-react';
 import { FormEvent, useEffect, useMemo, useState } from 'react';
 import { zeroAddress } from 'viem';
 import { useAccount, useReadContract, useWaitForTransactionReceipt, useWriteContract } from 'wagmi';
-
-import { deployedContracts } from '@/lib/contracts/generated/deployed-contracts';
-
-const fallbackContract = deployedContracts['11011'].HelloShape;
 
 export default function DebugContractsPage() {
   const { address, isConnected } = useAccount();
@@ -27,7 +24,7 @@ export default function DebugContractsPage() {
     return (
       deployment ?? {
         address: zeroAddress,
-        abi: fallbackContract.abi,
+        abi: helloShapeAbi,
       }
     );
   }, [deployment]);

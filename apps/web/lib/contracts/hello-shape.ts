@@ -1,11 +1,12 @@
 import { deployedContracts } from '@/lib/contracts/generated/deployed-contracts';
-import type { Abi, Address } from 'viem';
+import { helloShapeAbi } from '@/lib/contracts/generated/wagmi';
+import type { Address } from 'viem';
 
 type SupportedChainId = keyof typeof deployedContracts;
 
 type HelloShapeDeployment = {
   address: Address;
-  abi: Abi;
+  abi: typeof helloShapeAbi;
 };
 
 const SUPPORTED_CHAIN_LABELS: Record<string, string> = {
@@ -14,7 +15,7 @@ const SUPPORTED_CHAIN_LABELS: Record<string, string> = {
 };
 
 function isSupportedChainId(chainId: number): chainId is number {
-  return String(chainId) in deployedContracts;
+  return Object.hasOwn(deployedContracts, String(chainId));
 }
 
 export function getHelloShapeDeployment(chainId: number): HelloShapeDeployment | null {
@@ -31,7 +32,7 @@ export function getHelloShapeDeployment(chainId: number): HelloShapeDeployment |
 
   return {
     address: contract.address as Address,
-    abi: contract.abi as Abi,
+    abi: helloShapeAbi,
   };
 }
 

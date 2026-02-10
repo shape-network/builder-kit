@@ -28,34 +28,13 @@ function getDeploymentAddress(chainId) {
   return deployedAddresses?.[MODULE_KEY] ?? null;
 }
 
-function loadAbi() {
-  const artifactPath = path.join(
-    __dirname,
-    '..',
-    'artifacts',
-    'contracts',
-    `${CONTRACT_NAME}.sol`,
-    `${CONTRACT_NAME}.json`,
-  );
-
-  const artifact = readJson(artifactPath);
-  if (!artifact?.abi) {
-    throw new Error(
-      `Missing ABI artifact at ${artifactPath}. Run \`bun contracts:compile\` first.`,
-    );
-  }
-
-  return artifact.abi;
-}
-
-function buildDeploymentMap(abi) {
+function buildDeploymentMap() {
   return Object.fromEntries(
     NETWORKS.map((network) => [
       String(network.chainId),
       {
         [CONTRACT_NAME]: {
           address: getDeploymentAddress(network.chainId),
-          abi,
         },
       },
     ]),
@@ -98,8 +77,7 @@ function writeWebTypeScript(deployments) {
 }
 
 function main() {
-  const abi = loadAbi();
-  const deployments = buildDeploymentMap(abi);
+  const deployments = buildDeploymentMap();
 
   const jsonPath = writeJsonDeployment(deployments);
   const tsPath = writeWebTypeScript(deployments);

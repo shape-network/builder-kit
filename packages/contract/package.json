@@ -8,7 +8,7 @@
     "deploy": "hardhat ignition deploy ./ignition/modules/HelloShape.js",
     "deploy:shape-sepolia": "hardhat ignition deploy ./ignition/modules/HelloShape.js --network shapeSepolia && bun run generate:artifact",
     "deploy:shape-mainnet": "hardhat ignition deploy ./ignition/modules/HelloShape.js --network shapeMainnet && bun run generate:artifact",
-    "generate:artifact": "node scripts/generate-deployment-artifact.js",
+    "generate:artifact": "node scripts/generate-deployment-artifact.js && (cd ../../apps/web && bun run wagmi:generate)",
     "verify": "hardhat run scripts/verify.js"
   },
   "devDependencies": {
