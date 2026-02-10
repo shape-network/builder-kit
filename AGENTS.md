@@ -8,7 +8,7 @@
 - `apps/web/hooks/` holds custom React hooks (example: `use-balance.ts`).
 - `apps/web/lib/` is for configs, clients, and utilities.
 - `apps/web/public/` contains static assets.
-- `packages/contract/` is the contract workspace scaffold.
+- `packages/contract/` is the Hardhat contract workspace.
 - Web app configs live in `apps/web/` (`next.config.ts`, `tsconfig.json`, `eslint.config.mjs`, `postcss.config.mjs`, `components.json`).
 - Monorepo orchestration is in root `package.json` and `turbo.json`.
 
@@ -22,6 +22,9 @@ Use Bun (see `package.json`):
 - `bun run lint` / `bun run lint:fix`: lint and auto-fix the web app.
 - `bun run type-check`: TypeScript type checking for the web app.
 - `bun run format` / `bun run format:check`: Prettier formatting and validation for the web app.
+- `bun run contracts:compile`: compile contracts in `packages/contract`.
+- `bun run contracts:test`: run contract tests.
+- `bun run contracts:deploy:shape-sepolia`: deploy contracts to Shape Sepolia.
 
 ## Coding Style & Naming Conventions
 
@@ -32,8 +35,8 @@ Use Bun (see `package.json`):
 
 ## Testing Guidelines
 
-- No automated test suite is configured yet. Use `bun lint` and `bun type-check`, then verify flows in the running app.
-- If you add tests, update `package.json` scripts and document the command here.
+- Web app checks: `bun lint` and `bun type-check`, then verify flows in the running app.
+- Contract checks: `bun contracts:compile` and `bun contracts:test`.
 
 ## Commit & Pull Request Guidelines
 
@@ -44,4 +47,5 @@ Use Bun (see `package.json`):
 ## Configuration & Secrets
 
 - Copy `apps/web/.env-example` to `apps/web/.env` and set `NEXT_PUBLIC_ALCHEMY_KEY`, `NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID`, and `NEXT_PUBLIC_CHAIN_ID` (11011 for Shape Sepolia, 360 for mainnet).
+- Copy `packages/contract/.env-example` to `packages/contract/.env` and set `DEPLOYER_PRIVATE_KEY` plus Shape RPC URLs before remote deploys.
 - Never commit real keys or secrets.
