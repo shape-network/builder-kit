@@ -92,6 +92,8 @@ Deploy locally (Hardhat network):
 bun --filter=@builder-kit/contract run deploy
 ```
 
+This uses Hardhat Ignition (`packages/contract/ignition/modules/HelloShape.js`).
+
 Deploy to Shape Sepolia:
 
 ```bash
@@ -158,6 +160,7 @@ vercel --prod --cwd apps/web
 ├── packages/
 │   └── contract/
 │       ├── contracts/
+│       ├── ignition/
 │       ├── scripts/
 │       └── test/
 ├── turbo.json

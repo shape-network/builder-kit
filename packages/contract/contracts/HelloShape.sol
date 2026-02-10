@@ -1,18 +1,19 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
+import { Ownable } from '@openzeppelin/contracts/access/Ownable.sol';
+
 /// @title HelloShape
 /// @notice Minimal baseline contract for deploy + read/write iteration loops.
-contract HelloShape {
-  error NotOwner();
+contract HelloShape is Ownable {
+  error EmptyMessage();
 
-  address public immutable owner;
   string private _message;
 
   event MessageUpdated(string oldMessage, string newMessage, address indexed updater);
 
-  constructor(string memory initialMessage) {
-    owner = msg.sender;
+  constructor(string memory initialMessage) Ownable(msg.sender) {
+    _revertIfEmpty(initialMessage);
     _message = initialMessage;
   }
 
@@ -20,12 +21,16 @@ contract HelloShape {
     return _message;
   }
 
-  function setMessage(string calldata newMessage) external {
-    if (msg.sender != owner) revert NotOwner();
+  function setMessage(string calldata newMessage) external onlyOwner {
+    _revertIfEmpty(newMessage);
 
     string memory oldMessage = _message;
     _message = newMessage;
 
     emit MessageUpdated(oldMessage, newMessage, msg.sender);
+  }
+
+  function _revertIfEmpty(string memory value) private pure {
+    if (bytes(value).length == 0) revert EmptyMessage();
   }
 }
