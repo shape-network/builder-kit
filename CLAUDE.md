@@ -49,8 +49,13 @@ ThemeProvider (next-themes)
 ### UI Components
 
 - Shadcn/ui (new-york style) in `components/ui/`
-- Add components via `bunx shadcn@latest add <component>`
+- Treat `components/ui/*` as generated shadcn/ui files; avoid manual edits.
+- Add/update components via `bunx shadcn@latest add <component> -y -o`
 - `cn()` utility in `lib/utils.ts` for class merging
+- Reference docs:
+  - `https://ui.shadcn.com/docs/components`
+  - `https://ui.shadcn.com/docs/llms.txt`
+  - `https://ui.shadcn.com/llms.txt`
 
 ### Path Aliases
 

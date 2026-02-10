@@ -26,6 +26,12 @@ Use Bun (see `package.json`):
 - Formatting via Prettier: 2-space indent, single quotes, semicolons, 100-char line width; Tailwind classes are sorted by `prettier-plugin-tailwindcss`.
 - ESLint is required; keep components small and composable.
 - File naming uses kebab-case (`wallet-connect.tsx`, `theme-toggle.tsx`) and hooks follow `use-*.ts`.
+- `components/ui/*` are shadcn/ui generated files. Do not hand-edit them unless absolutely required for a hotfix.
+- For updates, re-pull from shadcn registry: `bunx shadcn@latest add <component> -y -o`.
+- Canonical references:
+  - Components docs: `https://ui.shadcn.com/docs/components`
+  - LLM context (docs path): `https://ui.shadcn.com/docs/llms.txt`
+  - LLM context: `https://ui.shadcn.com/llms.txt`
 
 ## Testing Guidelines
 

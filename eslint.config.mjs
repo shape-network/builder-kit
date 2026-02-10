@@ -7,6 +7,12 @@ const eslintConfig = [
   {
     ignores: ['node_modules/**', '.next/**', 'out/**', 'build/**', 'next-env.d.ts'],
   },
+  {
+    files: ['components/ui/**/*.tsx'],
+    rules: {
+      'react-hooks/purity': 'off',
+    },
+  },
 ];
 
 export default eslintConfig;
