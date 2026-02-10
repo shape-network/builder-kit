@@ -11,6 +11,7 @@ const eslintConfig = [
     files: ['components/ui/**/*.tsx'],
     rules: {
       'react-hooks/purity': 'off',
+      '@typescript-eslint/no-unused-vars': 'off',
     },
   },
 ];
