@@ -57,6 +57,12 @@ export default function Home() {
       </div>
 
       <div className="flex flex-wrap items-center justify-center gap-4">
+        <Button variant="secondary" asChild>
+          <Link href="/debug/contracts">
+            <ArrowTopRightIcon className="mr-2 h-4 w-4" />
+            Debug Contracts
+          </Link>
+        </Button>
         <Button asChild>
           <Link href="https://github.com/shape-network/builder-kit">
             <ArrowTopRightIcon className="mr-2 h-4 w-4" />

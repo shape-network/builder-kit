@@ -13,6 +13,7 @@
     "contracts:compile": "bun --filter=@builder-kit/contract run compile",
     "contracts:test": "bun --filter=@builder-kit/contract run test",
     "contracts:deploy:shape-sepolia": "bun --filter=@builder-kit/contract run deploy:shape-sepolia",
+    "contracts:artifact": "bun --filter=@builder-kit/contract run generate:artifact",
     "lint": "bun --filter=@builder-kit/web run lint",
     "lint:fix": "bun --filter=@builder-kit/web run lint:fix",
     "type-check": "bun --filter=@builder-kit/web run type-check",
