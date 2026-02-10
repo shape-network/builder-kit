@@ -54,4 +54,21 @@ describe('HelloShape', function () {
       'EmptyMessage',
     );
   });
+
+  it('uses two-step ownership transfer', async function () {
+    const { helloShape, owner, other } = await deployFixture();
+
+    await expect(helloShape.connect(owner).transferOwnership(other.address))
+      .to.emit(helloShape, 'OwnershipTransferStarted')
+      .withArgs(owner.address, other.address);
+
+    expect(await helloShape.owner()).to.equal(owner.address);
+    expect(await helloShape.pendingOwner()).to.equal(other.address);
+
+    await expect(helloShape.connect(other).acceptOwnership())
+      .to.emit(helloShape, 'OwnershipTransferred')
+      .withArgs(owner.address, other.address);
+
+    expect(await helloShape.owner()).to.equal(other.address);
+  });
 });

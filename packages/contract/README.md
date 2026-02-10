@@ -3,6 +3,7 @@
 Hardhat workspace for Shape contracts.
 
 Default deploy flow uses Hardhat Ignition (recommended by Hardhat docs).
+Access control baseline uses OpenZeppelin `Ownable2Step`.
 
 ## Setup
 

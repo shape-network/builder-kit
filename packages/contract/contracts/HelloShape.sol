@@ -2,10 +2,11 @@
 pragma solidity ^0.8.24;
 
 import { Ownable } from '@openzeppelin/contracts/access/Ownable.sol';
+import { Ownable2Step } from '@openzeppelin/contracts/access/Ownable2Step.sol';
 
 /// @title HelloShape
 /// @notice Minimal baseline contract for deploy + read/write iteration loops.
-contract HelloShape is Ownable {
+contract HelloShape is Ownable2Step {
   error EmptyMessage();
 
   string private _message;
