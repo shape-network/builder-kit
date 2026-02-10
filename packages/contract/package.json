@@ -1,5 +1,18 @@
 {
   "name": "@builder-kit/contract",
   "version": "0.1.0",
-  "private": true
+  "private": true,
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy": "hardhat run scripts/deploy.js",
+    "deploy:shape-sepolia": "hardhat run scripts/deploy.js --network shapeSepolia",
+    "deploy:shape-mainnet": "hardhat run scripts/deploy.js --network shapeMainnet",
+    "verify": "hardhat run scripts/verify.js"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "dotenv": "^16.6.1",
+    "hardhat": "^2.22.19"
+  }
 }
