@@ -4,8 +4,8 @@ A modern, production-ready starter template for building decentralized applicati
 
 <table width="100%">
   <tr>
-    <td width="50%"><img src="./public/lp-1.png" alt="Builder Kit Screenshot 1" width="100%"/></td>
-    <td width="50%"><img src="./public/lp-2.png" alt="Builder Kit Screenshot 2" width="100%"/></td>
+    <td width="50%"><img src="./apps/web/public/lp-1.png" alt="Builder Kit Screenshot 1" width="100%"/></td>
+    <td width="50%"><img src="./apps/web/public/lp-2.png" alt="Builder Kit Screenshot 2" width="100%"/></td>
   </tr>
 </table>
 
@@ -41,7 +41,7 @@ See deployed website: [builder-kit.vercel.app](https://builder-kit.vercel.app/)
 3. **Set up environment variables**
 
    ```bash
-   cp .env-example .env
+   cp apps/web/.env-example apps/web/.env
    ```
 
    Fill in your environment variables:
@@ -74,33 +74,24 @@ See deployed website: [builder-kit.vercel.app](https://builder-kit.vercel.app/)
 ### Project Structure
 
 ```
-├── app/                    # Next.js App Router
-│   ├── api/               # API routes
-│   │   ├── get-nfts/     # Fetch NFTs for address
-├── components/            # React components
-│   ├── ui/               # Shadcn/ui components
-│   ├── error-boundary.tsx
-│   ├── loading.tsx
-│   ├── providers.tsx
-│   ├── theme-toggle.tsx
-│   └── wallet-connect.tsx
-├── hooks/                 # Custom React hooks
-│   ├── web3.ts           # Web3 data fetching hooks
-│   ├── use-balance.ts    # Wallet balance hook
-│   ├── use-mobile.ts     # Mobile detection hook
-├── lib/                   # Utility functions and configurations
-│   ├── clients.ts        # Alchemy and RPC clients
-│   ├── config.ts         # Environment configuration
-│   ├── utils.ts          # Helper functions
-│   └── web3.ts           # Wagmi configuration
-└── public/               # Static assets
+├── apps/
+│   └── web/               # Next.js app
+│       ├── app/           # App Router + API routes
+│       ├── components/    # Shared React components
+│       ├── hooks/         # Custom hooks
+│       ├── lib/           # Utilities/config/clients
+│       └── public/        # Static assets
+├── packages/
+│   └── contract/          # Contract workspace (Phase 2 scaffold)
+├── turbo.json             # Turbo task graph
+└── package.json           # Root Bun workspace scripts
 ```
 
 ## 🎨 Customization
 
 ### Theme Customization
 
-Edit `app/globals.css` to customize the color scheme:
+Edit `apps/web/app/globals.css` to customize the color scheme:
 
 ```css
 :root {
