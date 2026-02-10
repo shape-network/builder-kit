@@ -1,6 +1,8 @@
-# Builder Kit: Onchain Starter Template
+# Builder Kit
 
-A modern, production-ready starter template for building decentralized applications with sensible defaults.
+Onchain starter for Shape with a minimal monorepo:
+- `apps/web` (Next.js + wagmi + RainbowKit)
+- `packages/contract` (Hardhat)
 
 <table width="100%">
   <tr>
@@ -9,143 +11,210 @@ A modern, production-ready starter template for building decentralized applicati
   </tr>
 </table>
 
-See deployed website: [builder-kit.vercel.app](https://builder-kit.vercel.app/)
+Live site: [builder-kit.vercel.app](https://builder-kit.vercel.app/)
 
-## ✨ Features
+## Prerequisites
 
-- **Next.js 16** with App Router and React 19
-- **Web3 Integration** with Wagmi v2 and RainbowKit
-- **React Query** for data fetching
-- **Shape Network** support (Mainnet & Sepolia)
-- **Alchemy SDK** for performant blockchain interactions
-- **TypeScript** for type safety
-- **Tailwind CSS** with theming and dark mode support
-- **Shadcn/ui** for a large range of fully customizable and themable components
-- **Error Boundaries** for graceful error handling
-
-## 🚀 Quick Start
-
-1. **Clone or use as template**
-
-   ```bash
-   git clone https://github.com/shape-network/builder-kit.git
-   cd builder-kit
-   ```
-
-2. **Install dependencies**
-
-   ```bash
-   bun install
-   ```
-
-3. **Set up environment variables**
-
-   ```bash
-   cp apps/web/.env-example apps/web/.env
-   ```
-
-   Fill in your environment variables:
-   - `NEXT_PUBLIC_ALCHEMY_KEY`: Get from [Alchemy](https://alchemy.com)
-   - `NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID`: Get from [WalletConnect](https://cloud.walletconnect.com)
-   - `NEXT_PUBLIC_CHAIN_ID`: Use `11011` for Shape Sepolia or `360` for Shape Mainnet
-
-4. **Start development server**
-
-   ```bash
-   bun dev
-   ```
-
-5. **Open your browser**
-   Navigate to [http://localhost:3000](http://localhost:3000)
-
-## 🛠️ Development
-
-### Available Scripts
-
-- `bun dev` - Start development server with Turbopack
-- `bun build` - Build for production
-- `bun start` - Start production server
-- `bun lint` - Run ESLint
-- `bun lint:fix` - Fix ESLint issues
-- `bun type-check` - Run TypeScript type checking
-- `bun format` - Format code with Prettier
-- `bun format:check` - Check code formatting
-
-### Project Structure
-
-```
-├── apps/
-│   └── web/               # Next.js app
-│       ├── app/           # App Router + API routes
-│       ├── components/    # Shared React components
-│       ├── hooks/         # Custom hooks
-│       ├── lib/           # Utilities/config/clients
-│       └── public/        # Static assets
-├── packages/
-│   └── contract/          # Contract workspace (Phase 2 scaffold)
-├── turbo.json             # Turbo task graph
-└── package.json           # Root Bun workspace scripts
-```
-
-## 🎨 Customization
-
-### Theme Customization
-
-Edit `apps/web/app/globals.css` to customize the color scheme:
-
-```css
-:root {
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
-  /* ... other CSS variables */
-}
-```
-
-### Adding Components
-
-Use Shadcn/ui CLI to add new components:
+- Node `v20.18.0` (`cat .nvmrc`)
+- Bun `1.3.6+`
+- WalletConnect project ID
+- Alchemy API key
+- Funded deployer wallet for Shape Sepolia/Mainnet deploys
 
 ```bash
-npx shadcn@latest add button
+nvm use
+bun --version
 ```
 
-### Web3 Integration
+## Install
 
-The template includes examples of Web3 integration:
+```bash
+git clone https://github.com/shape-network/builder-kit.git
+cd builder-kit
+bun install
+```
 
-- Wallet connection with RainbowKit
-- Balance fetching with custom hooks
-- Chain switching and network detection
-- Error handling for Web3 operations
+## Configure: Web App
 
-## 🌐 Deployment
+```bash
+cp apps/web/.env-example apps/web/.env
+```
 
-### Vercel (Recommended)
+Required values in `apps/web/.env`:
+- `NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID`
+- `NEXT_PUBLIC_ALCHEMY_KEY`
+- `NEXT_PUBLIC_CHAIN_ID` (`11011` for Shape Sepolia, `360` for Shape Mainnet)
 
-1. Push your code to GitHub
-2. Connect your repository to [Vercel](https://vercel.com)
-3. Add your environment variables in Vercel dashboard
-4. Deploy!
+## Run: Web App
 
-## 📚 Documentation
+```bash
+bun dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs)
-- [Wagmi Documentation](https://wagmi.sh)
-- [RainbowKit Documentation](https://www.rainbowkit.com)
-- [Shadcn/ui Documentation](https://ui.shadcn.com)
-- [Shape Network Documentation](https://docs.shape.network)
-- [Alchemy SDK Documentation](https://docs.alchemy.com/reference/alchemy-sdk-quickstart)
+Open `http://localhost:3000`.
 
-## 🤝 Contributing
+Other web commands:
 
-Contributions are welcome! Feel free to submit a Pull Request.
+```bash
+bun build
+bun start
+bun lint
+bun lint:fix
+bun type-check
+bun format
+bun format:check
+```
 
-## 📄 License
+## Configure: Contract Package
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```bash
+cp packages/contract/.env-example packages/contract/.env
+```
 
-## 💬 Support
+Set in `packages/contract/.env`:
+- `DEPLOYER_PRIVATE_KEY` (required for remote deploys)
+- `SHAPE_SEPOLIA_RPC_URL` and/or `SHAPE_MAINNET_RPC_URL`
+- `SHAPE_EXPLORER_API_KEY` (optional, for verify)
+- `INITIAL_MESSAGE` (optional constructor arg override)
 
+## Build/Test/Deploy: Contracts
+
+Compile and test:
+
+```bash
+bun contracts:compile
+bun contracts:test
+```
+
+`bun contracts:compile` also regenerates deployment artifacts for the web app and runs Wagmi CLI codegen.
+
+Deploy locally (Hardhat network):
+
+```bash
+bun --filter=@builder-kit/contract run deploy
+```
+
+This uses Hardhat Ignition (`packages/contract/ignition/modules/HelloShape.js`).
+
+Deploy to Shape Sepolia:
+
+```bash
+bun contracts:deploy:shape-sepolia
+```
+
+Sepolia deploy also regenerates deployment artifacts.
+
+Deploy to Shape Mainnet:
+
+```bash
+bun --filter=@builder-kit/contract run deploy:shape-mainnet
+```
+
+Mainnet deploy also regenerates deployment artifacts.
+
+Manual artifact generation:
+
+```bash
+bun contracts:artifact
+```
+
+Manual Wagmi generation:
+
+```bash
+bun wagmi:generate
+```
+
+Verify on Shape explorer:
+
+```bash
+CONTRACT_ADDRESS=0xYourContractAddress \
+  bun --filter=@builder-kit/contract run verify --network shapeSepolia
+```
+
+For mainnet verify, switch network flag to `shapeMainnet`.
+
+## Root Command Reference
+
+- `bun dev`: run `apps/web` dev server
+- `bun build`: production build for `apps/web`
+- `bun start`: start built `apps/web`
+- `bun lint`: lint `apps/web`
+- `bun type-check`: type-check `apps/web`
+- `bun contracts:compile`: compile Solidity contracts
+- `bun contracts:test`: run Hardhat tests
+- `bun contracts:deploy:shape-sepolia`: deploy sample contract to Shape Sepolia
+- `bun contracts:artifact`: regenerate deployment artifacts consumed by the web app
+- `bun wagmi:generate`: regenerate Wagmi typed ABI/hooks from Hardhat artifacts
+
+## Contract Debug Page
+
+`/debug/contracts` reads deployment artifacts and interacts with `HelloShape`.
+
+- shows explicit deployment mismatch errors when chain/artifacts are out of sync
+- reads current message/owner
+- writes `setMessage` from connected wallet
+
+Generated outputs:
+- `packages/contract/deployments/deployed-contracts.json` (addresses)
+- `apps/web/lib/contracts/generated/deployed-contracts.ts` (typed addresses)
+- `apps/web/lib/contracts/generated/wagmi.ts` (Wagmi CLI ABI/hooks)
+
+## Vercel Deploy (Monorepo)
+
+If deploying from Git integration in Vercel dashboard:
+- Framework preset: Next.js
+- Root Directory: `apps/web`
+- Add env vars:
+  - `NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID`
+  - `NEXT_PUBLIC_ALCHEMY_KEY`
+  - `NEXT_PUBLIC_CHAIN_ID`
+
+CLI path:
+
+```bash
+vercel link --cwd apps/web
+vercel env add NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID production
+vercel env add NEXT_PUBLIC_ALCHEMY_KEY production
+vercel env add NEXT_PUBLIC_CHAIN_ID production
+vercel --prod --cwd apps/web
+```
+
+## Project Structure
+
+```text
+.
+├── apps/
+│   └── web/
+│       ├── app/
+│       ├── components/
+│       ├── hooks/
+│       ├── lib/
+│       └── public/
+├── packages/
+│   └── contract/
+│       ├── contracts/
+│       ├── deployments/
+│       ├── ignition/
+│       ├── scripts/
+│       └── test/
+├── turbo.json
+└── package.json
+```
+
+## Troubleshooting
+
+- `No projectId found`:
+  - missing `NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID` in `apps/web/.env` (or Vercel envs)
+- Hardhat warns Node version unsupported:
+  - use Node 20 (`nvm use`)
+- `HH501` compiler download errors:
+  - network access blocked when Hardhat tries to fetch solc
+
+## Support
+
+- [Shape docs](https://docs.shape.network)
 - [Shape Discord](http://discord.com/invite/shape-l2)
-- [Twitter/X @shape](https://x.com/shape)
-- [Twitter/X @williamhzo](https://x.com/williamhzo)
+- [wagmi docs](https://wagmi.sh)
+- [wagmi core getting started](https://wagmi.sh/core/getting-started)
+- [wagmi cli docs](https://wagmi.sh/cli)
+- [Hardhat docs](https://hardhat.org/docs)

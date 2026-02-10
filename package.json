@@ -10,6 +10,11 @@
     "dev": "bun --filter=@builder-kit/web run dev",
     "build": "bun --filter=@builder-kit/web run build",
     "start": "bun --filter=@builder-kit/web run start",
+    "contracts:compile": "bun --filter=@builder-kit/contract run compile",
+    "contracts:test": "bun --filter=@builder-kit/contract run test",
+    "contracts:deploy:shape-sepolia": "bun --filter=@builder-kit/contract run deploy:shape-sepolia",
+    "contracts:artifact": "bun --filter=@builder-kit/contract run generate:artifact",
+    "wagmi:generate": "bun --filter=@builder-kit/web run wagmi:generate",
     "lint": "bun --filter=@builder-kit/web run lint",
     "lint:fix": "bun --filter=@builder-kit/web run lint:fix",
     "type-check": "bun --filter=@builder-kit/web run type-check",
@@ -18,5 +23,8 @@
   },
   "devDependencies": {
     "turbo": "2.8.4"
+  },
+  "overrides": {
+    "@types/minimatch": "5.1.2"
   }
 }

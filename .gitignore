@@ -19,6 +19,10 @@
 
 # production
 /build
+packages/contract/artifacts
+packages/contract/cache
+packages/contract/ignition/deployments
+packages/contract/typechain-types
 
 # misc
 .DS_Store

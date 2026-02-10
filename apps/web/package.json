@@ -6,6 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
+    "wagmi:generate": "wagmi generate --config wagmi.config.ts",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "type-check": "tsc --noEmit",
@@ -69,6 +70,7 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@wagmi/cli": "^2.9.0",
     "@tailwindcss/postcss": "^4.1.18",
     "@types/node": "^25.2.2",
     "@types/react": "19.2.2",
