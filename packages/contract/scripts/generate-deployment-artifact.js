@@ -43,7 +43,6 @@ function buildDeploymentMap() {
 
 function writeJsonDeployment(deployments) {
   const payload = {
-    generatedAt: new Date().toISOString(),
     contracts: deployments,
   };
 
