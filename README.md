@@ -17,7 +17,7 @@ Live site: [builder-kit.vercel.app](https://builder-kit.vercel.app/)
 
 - Node `v20.18.0` (`cat .nvmrc`)
 - Bun `1.3.6+`
-- WalletConnect project ID
+- WalletConnect project ID (optional, only for WalletConnect connector)
 - Alchemy API key
 - Funded deployer wallet for Shape Sepolia/Mainnet deploys
 
@@ -41,9 +41,11 @@ cp apps/web/.env-example apps/web/.env
 ```
 
 Required values in `apps/web/.env`:
-- `NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID`
 - `NEXT_PUBLIC_ALCHEMY_KEY`
 - `NEXT_PUBLIC_CHAIN_ID` (`11011` for Shape Sepolia, `360` for Shape Mainnet)
+
+Optional value:
+- `NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID` (enables WalletConnect button; injected wallets still work without it)
 
 ## Run: Web App
 
@@ -165,9 +167,9 @@ If deploying from Git integration in Vercel dashboard:
 - Framework preset: Next.js
 - Root Directory: `apps/web`
 - Add env vars:
-  - `NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID`
   - `NEXT_PUBLIC_ALCHEMY_KEY`
   - `NEXT_PUBLIC_CHAIN_ID`
+  - `NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID` (optional)
 
 CLI path:
 
@@ -203,8 +205,8 @@ vercel --prod --cwd apps/web
 
 ## Troubleshooting
 
-- `No projectId found`:
-  - missing `NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID` in `apps/web/.env` (or Vercel envs)
+- WalletConnect button is missing:
+  - set `NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID` in `apps/web/.env` (or Vercel envs)
 - Hardhat warns Node version unsupported:
   - use Node 20 (`nvm use`)
 - `HH501` compiler download errors:
