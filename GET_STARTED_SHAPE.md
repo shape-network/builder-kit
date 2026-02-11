@@ -1,6 +1,13 @@
 # Get Started on Shape (15-Min First Tx)
 
-Command-first setup for this repo with Bun only.
+Single runbook for setup + first transaction.
+
+## Prerequisites
+
+- Node `v20.18.0` (`cat .nvmrc`)
+- Bun `1.3.6+`
+- `NEXT_PUBLIC_ALCHEMY_KEY`
+- `DEPLOYER_PRIVATE_KEY` (funded on Shape Sepolia)
 
 ## 1) Install
 
@@ -16,25 +23,21 @@ cp apps/web/.env-example apps/web/.env
 cp packages/contract/.env-example packages/contract/.env
 ```
 
-Set required values:
+Required values:
 - `apps/web/.env`
   - `NEXT_PUBLIC_ALCHEMY_KEY`
-  - `NEXT_PUBLIC_CHAIN_ID=11011` (Shape Sepolia)
+  - `NEXT_PUBLIC_CHAIN_ID=11011`
+  - `NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID` (optional)
 - `packages/contract/.env`
   - `DEPLOYER_PRIVATE_KEY`
-  - `SHAPE_SEPOLIA_RPC_URL` (default in example is fine)
+  - `SHAPE_SEPOLIA_RPC_URL` (default is fine)
 
-## 3) Run contracts locally
+## 3) Build + test contracts
 
 ```bash
 bun contracts:compile
 bun contracts:test
 ```
-
-This regenerates:
-- `packages/contract/deployments/deployed-contracts.json`
-- `apps/web/lib/contracts/generated/deployed-contracts.ts`
-- `apps/web/lib/contracts/generated/wagmi.ts`
 
 ## 4) Deploy to Shape Sepolia
 
@@ -48,35 +51,35 @@ bun contracts:deploy:shape-sepolia
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000), then go to `/debug/contracts`.
+Open [http://localhost:3000](http://localhost:3000), then `/debug/contracts`.
 
 ## 6) Send first tx
 
-1. Connect wallet (injected or WalletConnect if `NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID` is set).
-2. Switch wallet to Shape Sepolia (`11011`).
-3. In `/debug/contracts`, enter a new message.
-4. Submit `Set Message` and confirm in wallet.
-5. Wait for receipt status `Confirmed`.
+1. Connect wallet.
+2. Switch to Shape Sepolia (`11011`).
+3. Enter a new message on `/debug/contracts`.
+4. Click `Set Message` and confirm.
+5. Wait for `Confirmed`.
 
 ## Common failures
 
 ### Missing keys
-- Symptom: wallet/actions fail or reads fail.
-- Fix: verify `NEXT_PUBLIC_ALCHEMY_KEY` and `DEPLOYER_PRIVATE_KEY` are set.
+- Symptom: reads/writes fail.
+- Fix: set `NEXT_PUBLIC_ALCHEMY_KEY` and `DEPLOYER_PRIVATE_KEY`.
 
 ### Wrong chain
-- Symptom: deployment mismatch on `/debug/contracts`.
-- Fix: switch wallet to chain `11011`, and ensure `NEXT_PUBLIC_CHAIN_ID=11011`.
+- Symptom: deployment mismatch error.
+- Fix: wallet chain + `NEXT_PUBLIC_CHAIN_ID` must both be `11011`.
 
-### Stale deployment artifacts
-- Symptom: debug page shows missing deployment after deploy.
+### Stale artifacts
+- Symptom: missing deployment after deploy.
 - Fix:
 
 ```bash
 bun contracts:artifact
 ```
 
-If needed, redeploy then regenerate:
+If still missing:
 
 ```bash
 bun contracts:deploy:shape-sepolia
