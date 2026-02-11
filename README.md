@@ -108,5 +108,4 @@ bun contracts:deploy:shape-sepolia
 
 - [Shape docs](https://docs.shape.network)
 - [Shape Discord](http://discord.com/invite/shape-l2)
-- [wagmi docs](https://wagmi.sh)
-- [Hardhat docs](https://hardhat.org/docs)
+- [@williamhzo](https://x.com/williamhzo)
