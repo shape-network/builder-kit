@@ -13,6 +13,8 @@ Onchain starter for Shape with a minimal monorepo:
 
 Live site: [builder-kit.vercel.app](https://builder-kit.vercel.app/)
 
+Quick path: [GET_STARTED_SHAPE.md](./GET_STARTED_SHAPE.md)
+
 ## Prerequisites
 
 - Node `v20.18.0` (`cat .nvmrc`)
