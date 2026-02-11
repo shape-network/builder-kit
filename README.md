@@ -6,6 +6,15 @@ Onchain starter for Shape with a minimal monorepo:
 
 Live site: [builder-kit.vercel.app](https://builder-kit.vercel.app/)
 
+## Deploy on Vercel
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/shape-network/builder-kit&root-directory=apps%2Fweb)
+
+Set these project env vars in Vercel after import:
+- `NEXT_PUBLIC_ALCHEMY_KEY`
+- `NEXT_PUBLIC_CHAIN_ID` (`11011` or `360`)
+- `NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID` (optional)
+
 ## Quick Start (15-Min First Tx)
 
 ### Prerequisites
