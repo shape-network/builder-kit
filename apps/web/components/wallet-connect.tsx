@@ -19,6 +19,10 @@ export const WalletConnect = () => {
   const { chains, switchChain } = useSwitchChain();
   const { data: ensName } = useEnsName({ address, chainId: mainnet.id, query: { enabled: !!address } });
   const connectErrorLabel = connectError?.message.split('Details:')[0]?.trim();
+  const preferredConnector =
+    connectors.find((connector) => connector.id === 'walletConnect' || connector.name === 'WalletConnect') ??
+    connectors[0];
+  const isConnecting = connectStatus === 'pending';
 
   function handleDisconnect() {
     disconnect();
@@ -27,7 +31,7 @@ export const WalletConnect = () => {
   if (!mounted) {
     return (
       <Button size="sm" variant="outline" disabled>
-        Connect Wallet
+        Connect
       </Button>
     );
   }
@@ -57,21 +61,17 @@ export const WalletConnect = () => {
 
   return (
     <div className="flex items-center gap-2">
-      {connectors.length > 0 ? (
-        connectors.map((connector) => (
-          <Button
-            key={connector.uid}
-            size="sm"
-            variant="outline"
-            disabled={connectStatus === 'pending'}
-            onClick={() => connect({ connector })}
-          >
-            {connector.name}
-          </Button>
-        ))
-      ) : (
+      <Button
+        size="sm"
+        variant="outline"
+        disabled={isConnecting || !preferredConnector}
+        onClick={() => preferredConnector && connect({ connector: preferredConnector })}
+      >
+        {isConnecting ? 'Connecting...' : 'Connect'}
+      </Button>
+      {!preferredConnector ? (
         <span className="text-muted-foreground text-sm">No wallet connector configured</span>
-      )}
+      ) : null}
       {connectError ? (
         <span className="text-destructive hidden text-xs md:inline">
           {connectErrorLabel || 'Connection failed'}
