@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     'ethereum',
     'wagmi',
     'builder',
-    'rainbowkit',
+    'walletconnect',
     'nextjs',
     'typescript',
     'tailwind',
