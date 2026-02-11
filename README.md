@@ -216,7 +216,4 @@ vercel --prod --cwd apps/web
 
 - [Shape docs](https://docs.shape.network)
 - [Shape Discord](http://discord.com/invite/shape-l2)
-- [wagmi docs](https://wagmi.sh)
-- [wagmi core getting started](https://wagmi.sh/core/getting-started)
-- [wagmi cli docs](https://wagmi.sh/cli)
-- [Hardhat docs](https://hardhat.org/docs)
+- [@williamhzo](https://x.com/williamhzo)
