@@ -1,7 +1,7 @@
 # Builder Kit
 
 Onchain starter for Shape with a minimal monorepo:
-- `apps/web` (Next.js + wagmi + RainbowKit)
+- `apps/web` (Next.js + wagmi + WalletConnect/injected connectors)
 - `packages/contract` (Hardhat)
 
 <table width="100%">

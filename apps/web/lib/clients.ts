@@ -1,5 +1,4 @@
 import { config } from '@/lib/config';
-import '@rainbow-me/rainbowkit/styles.css';
 import { Alchemy, Network } from 'alchemy-sdk';
 import { createPublicClient, http } from 'viem';
 import { shape, shapeSepolia } from 'viem/chains';

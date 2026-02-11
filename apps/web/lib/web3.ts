@@ -1,16 +1,39 @@
 'use client';
 
 import { config } from '@/lib/config';
-import { getDefaultConfig } from '@rainbow-me/rainbowkit';
-import '@rainbow-me/rainbowkit/styles.css';
 import { http } from 'viem';
 import { mainnet, shape, shapeSepolia } from 'viem/chains';
+import { createConfig } from 'wagmi';
+import { injected, walletConnect } from 'wagmi/connectors';
 
-export const wagmiConfig = getDefaultConfig({
-  appName: 'Builder Kit',
-  ssr: true,
-  projectId: config.walletConnectProjectId,
+const appOrigin =
+  typeof window !== 'undefined' ? window.location.origin : 'https://builder-kit.vercel.app';
+
+const connectors =
+  typeof window !== 'undefined'
+    ? [
+        injected(),
+        ...(config.walletConnectProjectId
+          ? [
+              walletConnect({
+                projectId: config.walletConnectProjectId,
+                showQrModal: true,
+                metadata: {
+                  name: 'Builder Kit',
+                  description: 'Builder Kit on Shape',
+                  url: appOrigin,
+                  icons: [`${appOrigin}/favicon.ico`],
+                },
+              }),
+            ]
+          : []),
+      ]
+    : [];
+
+export const wagmiConfig = createConfig({
   chains: [shape, shapeSepolia, mainnet],
+  connectors,
+  ssr: true,
   transports: {
     [shape.id]: http(`https://shape-mainnet.g.alchemy.com/v2/${config.alchemyKey}`, {
       batch: true,

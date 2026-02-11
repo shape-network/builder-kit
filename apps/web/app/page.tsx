@@ -19,7 +19,7 @@ export default function Home() {
           <CardHeader>
             <CardTitle>Web3 Ready</CardTitle>
             <CardDescription>
-              Pre-configured with Wagmi, RainbowKit, and Alchemy SDK
+              Pre-configured with Wagmi connectors and Alchemy SDK
             </CardDescription>
           </CardHeader>
           <CardContent>
