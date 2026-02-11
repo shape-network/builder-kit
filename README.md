@@ -76,30 +76,6 @@ Open [http://localhost:3000](http://localhost:3000), then `/debug/contracts`.
 4. Click `Set Message` and confirm.
 5. Wait for `Confirmed`.
 
-## Common Failures
-
-### Missing keys
-- Symptom: reads/writes fail.
-- Fix: set `NEXT_PUBLIC_ALCHEMY_KEY` and `DEPLOYER_PRIVATE_KEY`.
-
-### Wrong chain
-- Symptom: deployment mismatch error.
-- Fix: wallet chain + `NEXT_PUBLIC_CHAIN_ID` must both be `11011`.
-
-### Stale artifacts
-- Symptom: missing deployment after deploy.
-- Fix:
-
-```bash
-bun contracts:artifact
-```
-
-If still missing:
-
-```bash
-bun contracts:deploy:shape-sepolia
-```
-
 ## Command Reference
 
 - `bun dev` run web app (`apps/web`)
