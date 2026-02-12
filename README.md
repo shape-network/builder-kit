@@ -24,12 +24,17 @@ Set these project env vars in Vercel after import:
 - `NEXT_PUBLIC_ALCHEMY_KEY`
 - `DEPLOYER_PRIVATE_KEY` (funded on Shape Sepolia)
 
-### 1) Install
+### 1) Scaffold project
 
 ```bash
-nvm use
-bun install
+bun create shape-app my-app --yes
+cd my-app
 ```
+
+Other package managers:
+- `npm create shape-app@latest my-app -- --yes`
+- `pnpm dlx create-shape-app my-app --yes`
+- `yarn create shape-app my-app --yes`
 
 ### 2) Configure env
 
