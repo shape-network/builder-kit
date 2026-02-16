@@ -1,6 +1,9 @@
 # Builder Kit
 
-Onchain starter for Shape with a minimal monorepo:
+[![create-shape-app](https://img.shields.io/npm/v/create-shape-app?label=create-shape-app)](https://www.npmjs.com/package/create-shape-app)
+[![license](https://img.shields.io/github/license/shape-network/builder-kit)](./LICENSE)
+
+Onchain starter for [Shape](https://shape.network) with a minimal monorepo:
 - `apps/web` (Next.js + wagmi)
 - `packages/contract` (Hardhat)
 
@@ -86,13 +89,21 @@ Open [http://localhost:3000](http://localhost:3000), then `/debug/contracts`.
 - `bun dev` run web app (`apps/web`)
 - `bun build` build web app
 - `bun start` start built web app
+- `bun test` run web + contract tests
 - `bun lint` lint web app
 - `bun type-check` type-check web app
+- `bun check` run lint + type-check + tests
 - `bun contracts:compile` compile + regenerate contract artifacts
 - `bun contracts:test` run contract tests
 - `bun contracts:deploy:shape-sepolia` deploy HelloShape to Shape Sepolia
 - `bun contracts:artifact` regenerate deployment artifacts consumed by web
 - `bun wagmi:generate` regenerate wagmi typed ABI/hooks
+
+## Community
+
+- Contribution guide: `CONTRIBUTING.md`
+- Security policy: `SECURITY.md`
+- Code of conduct: `CODE_OF_CONDUCT.md`
 
 ## Support
 

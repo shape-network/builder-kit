@@ -1,0 +1,75 @@
+# Builder Kit
+
+> Onchain starter kit for Shape with a Next.js frontend and Hardhat contracts.
+
+Shape is an EVM-compatible L2 built on the OP Stack.
+Builder Kit is a monorepo template that gives you everything needed to build, deploy, and interact with smart contracts on Shape.
+
+## Getting Started
+
+Scaffold a new project:
+- npx create-shape-app my-app
+- bunx create-shape-app my-app
+- pnpm dlx create-shape-app my-app
+
+## Project Structure
+
+- apps/web: Next.js frontend (App Router, TypeScript, Tailwind CSS)
+- packages/contract: Hardhat project (Solidity, deploy scripts, tests)
+
+## Tech Stack
+
+Frontend (apps/web):
+- Next.js 15 with App Router
+- wagmi + viem for onchain interactions
+- RainbowKit for wallet connection
+- Tailwind CSS for styling
+- TypeScript throughout
+
+Contracts (packages/contract):
+- Hardhat for compilation, testing, deployment
+- Solidity smart contracts
+- Deployment scripts for Shape Sepolia and Shape mainnet
+
+## Key Commands
+
+- bun dev: Run web app locally
+- bun build: Build web app for production
+- bun test: Run web and contract tests
+- bun lint: Lint web app
+- bun type-check: Type-check web app
+- bun check: Run lint + type-check + tests
+- bun contracts:compile: Compile Solidity contracts
+- bun contracts:test: Run contract tests
+- bun contracts:deploy:shape-sepolia: Deploy to Shape Sepolia testnet
+- bun wagmi:generate: Regenerate typed ABI/hooks from deployed contracts
+
+## Extending
+
+To add a new contract:
+1. Create a new .sol file in packages/contract/contracts/
+2. Run bun contracts:compile
+3. Write deploy script in packages/contract/scripts/
+4. Deploy with bun contracts:deploy:shape-sepolia
+5. Run bun contracts:artifact to generate deployment artifacts
+6. Run bun wagmi:generate to create typed React hooks
+
+## Environment Variables
+
+apps/web/.env:
+- NEXT_PUBLIC_ALCHEMY_KEY (required)
+- NEXT_PUBLIC_CHAIN_ID: 11011 (Shape Sepolia) or 360 (Shape mainnet)
+- NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID (optional)
+
+packages/contract/.env:
+- DEPLOYER_PRIVATE_KEY (required for deployment)
+- SHAPE_SEPOLIA_RPC_URL (has default)
+
+## Links
+
+- Source: https://github.com/shape-network/builder-kit
+- Scaffolding CLI: https://github.com/shape-network/create-shape-app
+- npm: https://www.npmjs.com/package/create-shape-app
+- Shape: https://shape.network
+- Shape docs: https://docs.shape.network
+- Shape Discord: http://discord.com/invite/shape-l2
