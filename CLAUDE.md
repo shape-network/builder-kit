@@ -71,3 +71,9 @@ ThemeProvider (next-themes)
 - Shape Mainnet (360)
 - Shape Sepolia (11011)
 - Ethereum Mainnet (for ENS resolution)
+
+## Ethereum Skills (ethskills)
+
+Ethereum development knowledge from [ethskills](https://github.com/austintgriffith/ethskills). Corrects common AI blind spots about gas costs, L2s, standards, and tooling.
+
+Read `.claude/skills/ethskills/SKILL.md` before starting any Ethereum development task. It contains a routing table to 18 topic-specific skills (fetched on demand via URL from `https://ethskills.com/<skill>/SKILL.md`).

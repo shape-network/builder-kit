@@ -103,6 +103,10 @@ Open [http://localhost:3000](http://localhost:3000), then `/debug/contracts`.
 - `bun contracts:artifact` regenerate deployment artifacts consumed by web
 - `bun wagmi:generate` regenerate wagmi typed ABI/hooks
 
+## AI-Assisted Development
+
+This repo includes [ethskills](https://ethskills.com/) by [Austin Griffith](https://github.com/austintgriffith/ethskills) in `.claude/skills/ethskills/`. These are Ethereum development reference files that correct common AI blind spots (gas costs, L2 pricing, current standards, verified addresses). AI coding tools working on this codebase will automatically have access to up-to-date Ethereum knowledge.
+
 ## Community
 
 - Security policy: `SECURITY.md`
