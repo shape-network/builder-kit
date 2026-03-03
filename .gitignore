@@ -25,6 +25,9 @@ packages/contract/cache
 packages/contract/ignition/deployments
 packages/contract/typechain-types
 
+# turbo
+.turbo
+
 # misc
 .DS_Store
 *.pem
