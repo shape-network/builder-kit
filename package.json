@@ -2,14 +2,31 @@
   "name": "builder-kit",
   "version": "0.1.0",
   "private": true,
+  "description": "Onchain starter kit for Shape with Next.js and Hardhat contracts.",
   "author": "williamhzo",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shape-network/builder-kit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shape-network/builder-kit/issues"
+  },
+  "homepage": "https://github.com/shape-network/builder-kit#readme",
   "packageManager": "bun@1.3.6",
-  "workspaces": ["apps/*", "packages/*"],
+  "engines": {
+    "node": ">=20.18.0",
+    "bun": ">=1.3.6"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
     "dev": "bun --filter=@builder-kit/web run dev",
     "build": "bun --filter=@builder-kit/web run build",
     "start": "bun --filter=@builder-kit/web run start",
+    "test": "bun --filter=@builder-kit/web run test && bun run contracts:test",
     "contracts:compile": "bun --filter=@builder-kit/contract run compile",
     "contracts:test": "bun --filter=@builder-kit/contract run test",
     "contracts:deploy:shape-sepolia": "bun --filter=@builder-kit/contract run deploy:shape-sepolia",
@@ -19,7 +36,8 @@
     "lint:fix": "bun --filter=@builder-kit/web run lint:fix",
     "type-check": "bun --filter=@builder-kit/web run type-check",
     "format": "bun --filter=@builder-kit/web run format",
-    "format:check": "bun --filter=@builder-kit/web run format:check"
+    "format:check": "bun --filter=@builder-kit/web run format:check",
+    "check": "bun run lint && bun run type-check && bun run test"
   },
   "devDependencies": {
     "turbo": "2.8.4"
