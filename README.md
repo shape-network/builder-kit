@@ -4,6 +4,7 @@
 [![license](https://img.shields.io/github/license/shape-network/builder-kit)](./LICENSE)
 
 Onchain starter for [Shape](https://shape.network) with a minimal monorepo:
+
 - `apps/web` (Next.js + wagmi)
 - `packages/contract` (Hardhat)
 
@@ -14,6 +15,7 @@ Live site: [builder-kit.vercel.app](https://builder-kit.vercel.app/)
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/shape-network/builder-kit&root-directory=apps%2Fweb)
 
 Set these project env vars in Vercel after import:
+
 - `NEXT_PUBLIC_ALCHEMY_KEY`
 - `NEXT_PUBLIC_CHAIN_ID` (`11011` or `360`)
 - `NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID` (optional)
@@ -35,6 +37,7 @@ cd my-app
 ```
 
 Other package managers:
+
 - `npm create shape-app@latest my-app -- --yes`
 - `pnpm dlx create-shape-app my-app --yes`
 - `yarn create shape-app my-app --yes`
@@ -47,6 +50,7 @@ cp packages/contract/.env-example packages/contract/.env
 ```
 
 Required values:
+
 - `apps/web/.env`
   - `NEXT_PUBLIC_ALCHEMY_KEY`
   - `NEXT_PUBLIC_CHAIN_ID=11011`
@@ -101,7 +105,6 @@ Open [http://localhost:3000](http://localhost:3000), then `/debug/contracts`.
 
 ## Community
 
-- Contribution guide: `CONTRIBUTING.md`
 - Security policy: `SECURITY.md`
 - Code of conduct: `CODE_OF_CONDUCT.md`
 
