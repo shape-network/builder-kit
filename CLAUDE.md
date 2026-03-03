@@ -74,29 +74,6 @@ ThemeProvider (next-themes)
 
 ## Ethereum Skills (ethskills)
 
-Ethereum development knowledge from [ethskills](https://github.com/austintgriffith/ethskills) is installed at `.claude/skills/ethskills/`. These correct common AI blind spots about gas costs, L2s, standards, and tooling.
+Ethereum development knowledge from [ethskills](https://github.com/austintgriffith/ethskills). Corrects common AI blind spots about gas costs, L2s, standards, and tooling.
 
-Read the relevant skill file before starting any Ethereum development task. Each skill is a `SKILL.md` file in its directory.
-
-| Skill | Path | Use when |
-|-------|------|----------|
-| Ship | `ship/` | Planning dApp architecture, choosing what goes onchain vs offchain |
-| Why Ethereum | `why/` | User asks "why blockchain?", needs current protocol stats, ERC-8004/x402 |
-| Gas & Costs | `gas/` | Estimating costs, setting gas params, comparing L1 vs L2 |
-| Wallets | `wallets/` | Key management, Safe multisig, EIP-7702, account abstraction |
-| Layer 2s | `l2s/` | Choosing an L2, deployment differences, bridging |
-| Standards | `standards/` | ERC-20/721/1155, ERC-8004, x402, EIP-7702, EIP-3009 |
-| Tools | `tools/` | Dev environment setup, Foundry, Blockscout MCP, RPCs |
-| Building Blocks | `building-blocks/` | DeFi composability, Uniswap V4 hooks, flash loans, vaults |
-| Orchestration | `orchestration/` | SE2 three-phase build system, agent commerce flow |
-| Addresses | `addresses/` | Verified contract addresses for Uniswap, Aave, Chainlink, etc. |
-| Concepts | `concepts/` | Incentive design, "nothing is automatic", randomness |
-| Security | `security/` | Reentrancy, decimals, oracles, MEV, proxy patterns, checklists |
-| Testing | `testing/` | Foundry unit/fuzz/fork/invariant testing |
-| Indexing | `indexing/` | Events, The Graph, Dune, onchain data queries |
-| Frontend UX | `frontend-ux/` | Button flows, address display, loading states, approval patterns |
-| Frontend Playbook | `frontend-playbook/` | IPFS deploy, Vercel config, ENS subdomains, production checklist |
-| QA | `qa/` | Pre-ship audit checklist for dApps |
-| Audit | `audit/` | 500+ item smart contract security audit system |
-
-All skills also available at `https://ethskills.com/<skill>/SKILL.md`.
+Read `.claude/skills/ethskills/SKILL.md` before starting any Ethereum development task. It contains a routing table to 18 topic-specific skills (fetched on demand via URL from `https://ethskills.com/<skill>/SKILL.md`).
